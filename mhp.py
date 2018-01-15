@@ -12,7 +12,7 @@ TOWERS = "[T](#mt-towers)"
 class Player(object):
     """A player participating in a League of Legends match."""
     def __init__(self, player_id, win, kills, deaths, assists, gold_earned,
-        champion):
+        champion, name, team):
 
         self.assists = assists
         self.champion = champion
@@ -20,7 +20,9 @@ class Player(object):
         self.gold_earned = gold_earned
         self.id = player_id
         self.kills = kills
+        self.name = name
         self.position = self.get_position(self.id)
+        self.team = team
         self.win = win
 
     def get_position(self, player_id):
@@ -36,12 +38,15 @@ class Player(object):
         else:
             return "SUP"
 
-def create_player(obj):
+def create_player(player_info, obj):
     """ Creates a Player object out of the given obj."""
     stats = obj["stats"]
+    player = player_info[stats["participantId"] - 1]["player"]
+    team = player["summonerName"].split()[0]
+    name = player["summonerName"].split()[1]
     return Player(stats["participantId"], stats["win"], stats["kills"],
         stats["deaths"], stats["assists"], stats["goldEarned"],
-        obj["championId"])
+        obj["championId"], name, team)
 
 def team_kda(players):
     kills = sum([player.kills for player in players])
@@ -62,7 +67,8 @@ if __name__ == '__main__':
     game_duration = round(request["gameDuration"] / 60)
     teams = request["teams"]
 
-    player_objects = [create_player(player) for player in players]
+    player_info = request["participantIdentities"]
+    player_objects = [create_player(player_info, player) for player in players]
 
     players_1 = player_objects[:5]
     players_2 = player_objects[5:]
