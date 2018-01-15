@@ -39,7 +39,7 @@ class Player(object):
             return "SUP"
 
 def create_player(player_info, obj):
-    """ Creates a Player object out of the given obj."""
+    """ Creates a Player object out of the given information and obj."""
     stats = obj["stats"]
     player = player_info[stats["participantId"] - 1]["player"]
     team = player["summonerName"].split()[0]
@@ -74,12 +74,15 @@ if __name__ == '__main__':
     players_2 = player_objects[5:]
 
     team_1_kda = team_kda(players_1)
+    team_1_short = players_1[0].team
     team_2_kda = team_kda(players_2)
+    team_2_short = players_2[0].team
 
-    print("{} {} {}".format(team_1_kda, VS, team_2_kda))
+    print("{} {} {} {} {}".format(team_1_short, team_1_kda, VS, team_2_kda,
+        team_2_short))
     for player_1, player_2 in zip(players_1, players_2):
         print("{} {} {}-{}-{} {} {}-{}-{} {} {}".format(
-            player_1.id, player_1.champion, player_1.kills, player_1.deaths,
+            player_1.name, player_1.champion, player_1.kills, player_1.deaths,
             player_1.assists, player_1.position, player_2.kills,
-            player_2.deaths, player_2.assists, player_2.champion, player_2.id
+            player_2.deaths, player_2.assists, player_2.champion, player_2.name
             ))
