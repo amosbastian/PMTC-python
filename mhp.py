@@ -2,7 +2,7 @@ import json
 import requests
 import sys
 
-API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/{}"
+API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/"
 CHAMPION_URL = "http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json"
 
 # /r/LeagueOfLegends
@@ -206,16 +206,18 @@ def create_post(team_1, team_2):
     scoreboard_section(team_1, team_2)
 
 if __name__ == '__main__':
-    # match_history = sys.argv[1].split("/")[-1]
-    match_history = "550246?gameHash=a7918e3f4936213b&tab=overview"
+    match_history = sys.argv[1].split("/")[-1]
+    match_id, match_hash = match_history.split("?gameHash=")
+
     with open("champion.json", "r") as json_data:
         champions = json.load(json_data)
 
-    request = requests.get(API_BASE_URL.format(match_history)).json()
+    request = requests.get("{}{}".format(API_BASE_URL, match_history)).json()
     teams = request["teams"]
     player_list = request["participants"]
     player_info = request["participantIdentities"]
-    game_events = get_events("https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/550247/timeline?gameHash=e8da58c50577df24")
+    game_events = get_events("{}{}/timeline?gameHash={}".format(API_BASE_URL,
+        match_id, match_hash))
     game_duration = round(request["gameDuration"] / 60)
 
     team_1 = create_team(1)
