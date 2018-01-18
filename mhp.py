@@ -163,7 +163,8 @@ class Team(object):
         self.id = team_id
         self.bans = bans
         self.players = players
-        self.kda = short
+        self.short = short
+        self.kda = kda
         self.towers = towers
         self.events = events
         self.gold = self._total_gold()
@@ -174,6 +175,36 @@ class Team(object):
 
     def _total_kills(self):
         return sum([player.kills for player in self.players])
+
+def ban_section(team_1, team_2):
+    print(f"||**Bans 1**|**Bans 2**|{GOLD}|{VS}|{TOWERS}|**Objectives**")
+    print("|:--|:--:|:--:|:--:|:--:|:--:|:--:|")
+    print("|{}|{}|{}|{:.2f}k|{}|{}|{}|".format(team_1.short, 
+        ' '.join(team_1.bans[0]), ' '.join(team_1.bans[1]),
+        team_1.gold / 1000.0, team_1.kills, team_1.towers,
+        ' '.join(team_1.events)))
+    print("|{}|{}|{}|{:.2f}k|{}|{}|{}|".format(team_2.short, 
+        ' '.join(team_2.bans[0]), ' '.join(team_2.bans[1]),
+        team_2.gold / 1000.0, team_2.kills, team_2.towers,
+        ' '.join(team_2.events)))
+
+def scoreboard_section(team_1, team_2):
+    print("|**{}**|{}|{}|{}|**{}**|".format(team_1.short, team_1.kda, VS,
+        team_2.kda, team_2.short))
+    print("|--:|--:|:--:|:--|:--|")
+    for p1, p2 in zip(team_1.players, team_2.players):
+        print("|{} {}|{}-{}-{}|{}|{}-{}-{}|{} {}|".format(
+            p1.name, champion_converter(p1.champion),
+            p1.kills, p1.deaths, p1.assists,
+            p1.position, p2.kills, p2.deaths,
+            p2.assists, champion_converter(p2.champion),
+            p2.name
+            ))
+
+def create_post(team_1, team_2):
+    ban_section(team_1, team_2)
+    print("\n&nbsp;\n")
+    scoreboard_section(team_1, team_2)
 
 if __name__ == '__main__':
     # match_history = sys.argv[1].split("/")[-1]
@@ -191,3 +222,4 @@ if __name__ == '__main__':
     team_1 = create_team(1)
     team_2 = create_team(2)
         
+    create_post(team_1, team_2)
