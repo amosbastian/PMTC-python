@@ -4,7 +4,7 @@ import sys
 
 API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/"
 
-# /r/LeagueOfLegends
+# /r/LeagueOfLegends stuff
 VS = "[vs](#mt-kills)"
 GOLD = "[G](#mt-gold)"
 TOWERS = "[T](#mt-towers)"
@@ -47,7 +47,7 @@ def champion_dictionary(obj):
     return champions
 
 def create_player(player_info, obj):
-    """ Creates a Player object out of the given information and obj."""
+    """Creates a Player object out of the given information and obj."""
     stats = obj["stats"]
     player = player_info[stats["participantId"] - 1]["player"]
     team = player["summonerName"].split()[0]
@@ -57,6 +57,7 @@ def create_player(player_info, obj):
         obj["championId"], name, team)
 
 def team_kda(players):
+    """Calculates the team's KDA from the KDA of its players."""
     kills = sum([player.kills for player in players])
     deaths = sum([player.deaths for player in players])
     assists = sum([player.assists for player in players])
@@ -64,6 +65,10 @@ def team_kda(players):
     return "{}-{}-{}".format(kills, deaths, assists)
 
 def champion_converter(champion_id):
+    """
+    Converts champion_id to a string format that shows champion's portrait on 
+    Reddit.
+    """
     champion_id = "{}".format(champion_id)
     if champion_id in champions:
         champion = champions[champion_id]
@@ -72,6 +77,7 @@ def champion_converter(champion_id):
     return "[{}](#c-{})".format(champion, champion)
 
 def print_scoreboard():
+    """Prints the scoreboard used to create a post-match thread on Reddit."""
     print("|**{}**|{}|{}|{}|**{}**|".format(team_1_short, team_1_kda, VS,
         team_2_kda, team_2_short))
     print("|--:|--:|:--:|:--|:--|")
@@ -85,6 +91,15 @@ def print_scoreboard():
             ))
 
 def get_events(url):
+    """
+    Gets all events of the given match. Events we are interested in:
+        - Rift Herald
+        - Cloud Dragon
+        - Mountain Dragon
+        - Ocean dragon
+        - Infernal dragon
+        - Baron Nashor
+    """
     response = requests.get(url).json()
 
     events = []
@@ -96,6 +111,9 @@ def get_events(url):
     return events
 
 def event_converter(event):
+    """
+    Converts event to string format that shows the event's portait on Reddit.
+    """
     if event["monsterType"] == "DRAGON":
         event = event["monsterSubType"]
     else:
@@ -115,6 +133,10 @@ def event_converter(event):
         return "[C](#mt-cloud)"
 
 def split_events(events):
+    """
+    Split the events over each team. If the person who killed the event has an
+    id less than or equal to five, then he is part of team 1, otherwise team 2.
+    """
     objectives = [[], []]
     for i, event in enumerate(events):
         if event["killerId"] <= 5:
@@ -125,6 +147,10 @@ def split_events(events):
     return objectives
 
 def ban_list(bans, team):
+    """
+    Create a list of two lists containing the banned champions of a team in
+    each of the two ban phases.
+    """
     ban_list = [[], []]
 
     if team == 1:
@@ -143,6 +169,7 @@ def ban_list(bans, team):
     return ban_list
 
 def create_team(team):
+    """Creates a team (see the class)."""
     bans = ban_list(teams[team - 1]["bans"], team=team)
     events = split_events(game_events)[team - 1]
     player_objects = [create_player(player_info, p) for p in player_list]
@@ -158,6 +185,9 @@ def create_team(team):
     return Team(team, bans, players, kda, short, towers, events)
 
 class Team(object):
+    """
+    A class representing a team in League of Legends.
+    """
     def __init__(self, team_id, bans, players, kda, short, towers, events):
         self.id = team_id
         self.bans = bans
@@ -166,16 +196,17 @@ class Team(object):
         self.kda = kda
         self.towers = towers
         self.events = events
-        self.gold = self._total_gold()
-        self.kills = self._total_kills()
 
-    def _total_gold(self):
+    @property
+    def gold(self):
         return sum([player.gold for player in self.players])
 
-    def _total_kills(self):
+    @property
+    def kills(self):
         return sum([player.kills for player in self.players])
 
 def ban_section(team_1, team_2):
+    """Prints the ban section used in a post-match thread."""
     print("||**Bans 1**|**Bans 2**|{}|{}|{}|**Objectives**".format(GOLD,
         VS, TOWERS))
     print("|:--|:--:|:--:|:--:|:--:|:--:|:--:|")
@@ -189,6 +220,7 @@ def ban_section(team_1, team_2):
         ' '.join(team_2.events)))
 
 def scoreboard_section(team_1, team_2):
+    """Prints the scoreboard section used in a post-match thread."""
     print("|**{}**|{}|{}|{}|**{}**|".format(team_1.short, team_1.kda, VS,
         team_2.kda, team_2.short))
     print("|--:|--:|:--:|:--|:--|")
@@ -202,6 +234,9 @@ def scoreboard_section(team_1, team_2):
             ))
 
 def create_post(team_1, team_2):
+    """
+    Prints the ban section and scoreboard section used in a post-match thread.
+    """
     ban_section(team_1, team_2)
     scoreboard_section(team_1, team_2)
 
@@ -212,6 +247,7 @@ if __name__ == '__main__':
     with open("champion.json", "r") as json_data:
         champions = json.load(json_data)
 
+    # Get all the information needed to create the players and teams
     request = requests.get("{}{}".format(API_BASE_URL, match_history)).json()
     teams = request["teams"]
     player_list = request["participants"]
@@ -220,7 +256,7 @@ if __name__ == '__main__':
         match_id, match_hash))
     game_duration = round(request["gameDuration"] / 60)
 
+    # Create the teams and create the post
     team_1 = create_team(1)
     team_2 = create_team(2)
-        
     create_post(team_1, team_2)
