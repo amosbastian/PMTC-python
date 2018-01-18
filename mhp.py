@@ -3,7 +3,6 @@ import requests
 import sys
 
 API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/"
-CHAMPION_URL = "http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json"
 
 # /r/LeagueOfLegends
 VS = "[vs](#mt-kills)"
@@ -119,9 +118,9 @@ def split_events(events):
     objectives = [[], []]
     for i, event in enumerate(events):
         if event["killerId"] <= 5:
-            objectives[0].append(f"{event_converter(event)}^{i + 1}")
+            objectives[0].append("{}^{}".format(event_converter(event), i + 1))
         else:
-            objectives[1].append(f"{event_converter(event)}^{i + 1}")
+            objectives[1].append("{}^{}".format(event_converter(event), i + 1))
 
     return objectives
 
@@ -177,7 +176,8 @@ class Team(object):
         return sum([player.kills for player in self.players])
 
 def ban_section(team_1, team_2):
-    print(f"||**Bans 1**|**Bans 2**|{GOLD}|{VS}|{TOWERS}|**Objectives**")
+    print("||**Bans 1**|**Bans 2**|{}|{}|{}|**Objectives**".format(GOLD,
+        VS, TOWERS))
     print("|:--|:--:|:--:|:--:|:--:|:--:|:--:|")
     print("|{}|{}|{}|{:.2f}k|{}|{}|{}|".format(team_1.short, 
         ' '.join(team_1.bans[0]), ' '.join(team_1.bans[1]),
