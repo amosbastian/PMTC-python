@@ -17,6 +17,7 @@ Once cloned you can simply run the program with Python (works with Python 2.7, 3
 Usage example:
 
 ```
+cd mhp
 python mhp.py "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT06/550247?gameHash=e8da58c50577df24&tab=overview"
 ```
 
