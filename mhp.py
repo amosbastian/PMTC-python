@@ -2,7 +2,7 @@ import json
 import requests
 import sys
 
-API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/TRLH3/{}"
+API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/{}"
 CHAMPION_URL = "http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json"
 
 # /r/LeagueOfLegends
@@ -92,7 +92,7 @@ def print_scoreboard():
 
 if __name__ == '__main__':
     # match_history = sys.argv[1].split("/")[-1]
-    match_history = "1002320090?gameHash=a534cb383e6b49dc&tab=overview"
+    match_history = "550246?gameHash=a7918e3f4936213b&tab=overview"
     with open("champion.json", "r") as json_data:
         champions = json.load(json_data)
 
