@@ -12,13 +12,13 @@ TOWERS = "[T](#mt-towers)"
 
 class Player(object):
     """A player participating in a League of Legends match."""
-    def __init__(self, player_id, win, kills, deaths, assists, gold_earned,
+    def __init__(self, player_id, win, kills, deaths, assists, gold,
         champion, name, team):
 
         self.assists = assists
         self.champion = champion
         self.deaths = deaths
-        self.gold_earned = gold_earned
+        self.gold = gold
         self.id = player_id
         self.kills = kills
         self.name = name
@@ -72,11 +72,6 @@ def champion_converter(champion_id):
         champion = champion_id
     return "[{}](#c-{})".format(champion, champion)
 
-def team_split(players):
-    team_1 = players[0]["player"]["summonerName"].split()[0]
-    team_2 = players[5]["player"]["summonerName"].split()[0]
-    return team_1, team_2
-
 def print_scoreboard():
     print("|**{}**|{}|{}|{}|**{}**|".format(team_1_short, team_1_kda, VS,
         team_2_kda, team_2_short))
@@ -128,29 +123,71 @@ def split_events(events):
         else:
             objectives[1].append(f"{event_converter(event)}^{i + 1}")
 
-    print(objectives)
+    return objectives
+
+def ban_list(bans, team):
+    ban_list = [[], []]
+
+    if team == 1:
+        phase_1, phase_2 = 0, 1
+    else:
+        phase_1, phase_2 = 1, 0
+    
+    for ban in sorted(bans, key=lambda x: x["pickTurn"]):
+        ban_turn = ban['pickTurn']
+        champion = champion_converter(ban['championId'])
+        if ban_turn % 2 != 0:
+            ban_list[phase_1].append(champion)
+        else:
+            ban_list[phase_2].append(champion)
+
+    return ban_list
+
+def create_team(team):
+    bans = ban_list(teams[team - 1]["bans"], team=team)
+    events = split_events(game_events)[team - 1]
+    player_objects = [create_player(player_info, p) for p in player_list]
+
+    if team == 1:
+        players = player_objects[:5]
+    else:
+        players = player_objects[5:]
+
+    kda = team_kda(players)
+    short = players[0].team
+    towers = teams[team - 1]["towerKills"]
+    return Team(team, bans, players, kda, short, towers, events)
+
+class Team(object):
+    def __init__(self, team_id, bans, players, kda, short, towers, events):
+        self.id = team_id
+        self.bans = bans
+        self.players = players
+        self.kda = short
+        self.towers = towers
+        self.events = events
+        self.gold = self._total_gold()
+        self.kills = self._total_kills()
+
+    def _total_gold(self):
+        return sum([player.gold for player in self.players])
+
+    def _total_kills(self):
+        return sum([player.kills for player in self.players])
 
 if __name__ == '__main__':
     # match_history = sys.argv[1].split("/")[-1]
-    # match_history = "550246?gameHash=a7918e3f4936213b&tab=overview"
-    # with open("champion.json", "r") as json_data:
-    #     champions = json.load(json_data)
+    match_history = "550246?gameHash=a7918e3f4936213b&tab=overview"
+    with open("champion.json", "r") as json_data:
+        champions = json.load(json_data)
 
-    # request = requests.get(API_BASE_URL.format(match_history)).json()
-    # players = request["participants"]
-    # game_duration = round(request["gameDuration"] / 60)
-    # teams = request["teams"]
+    request = requests.get(API_BASE_URL.format(match_history)).json()
+    teams = request["teams"]
+    player_list = request["participants"]
+    player_info = request["participantIdentities"]
+    game_events = get_events("https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/550247/timeline?gameHash=e8da58c50577df24")
+    game_duration = round(request["gameDuration"] / 60)
 
-    # player_info = request["participantIdentities"]
-    # player_objects = [create_player(player_info, player) for player in players]
-
-    # players_1 = player_objects[:5]
-    # players_2 = player_objects[5:]
-
-    # team_1_kda = team_kda(players_1)
-    # team_1_short = players_1[0].team
-    # team_2_kda = team_kda(players_2)
-    # team_2_short = players_2[0].team
-
-    # print_scoreboard()
+    team_1 = create_team(1)
+    team_2 = create_team(2)
         
