@@ -42,4 +42,4 @@ What can I use this for?
 --------------------
 If you want to create a post-match thread on [/r/LeagueOfLegends](https://www.reddit.com/r/leagueoflegends/) and you are too lazy to manually enter everything like me, then use this! The gif below shows how easy this is!
 
-![](https://i.imgur.com/CNeO6G7.gif)
+![](https://i.imgur.com/Icl9ACw.gif)
