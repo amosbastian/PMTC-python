@@ -22,6 +22,7 @@ python mhp.py "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ES
 
 with output
 
+```
 ||**Bans 1**|**Bans 2**|[G](#mt-gold)|[vs](#mt-kills)|[T](#mt-towers)|**Objectives**
 |:--|:--:|:--:|:--:|:--:|:--:|:--:|
 |KSV|[tahmkench](#c-tahmkench) [kogmaw](#c-kogmaw) [azir](#c-azir)|[khazix](#c-khazix) [jarvaniv](#c-jarvaniv)|70.92k|11|11|[H](#mt-herald)^1 [B](#mt-barons)^4 [M](#mt-mountain)^5|
@@ -34,6 +35,7 @@ with output
 |Crown [malzahar](#c-malzahar)|2-2-6|MID|2-1-2|[ryze](#c-ryze) Bdd|
 |Ruler [ezreal](#c-ezreal)|2-0-6|ADC|0-4-2|[sivir](#c-sivir) PraY|
 |CoreJJ [braum](#c-braum)|0-0-8|SUP|0-1-3|[taric](#c-taric) GorillA|
+```
 
 What can I use this for?
 --------------------
