@@ -90,26 +90,67 @@ def print_scoreboard():
             player_2.name
             ))
 
+def get_events(url):
+    response = requests.get(url).json()
+
+    events = []
+    for frame in response["frames"]:
+        for event in frame["events"]:
+            if event["type"] == "ELITE_MONSTER_KILL":
+                events.append(event)
+
+    return events
+
+def event_converter(event):
+    if event["monsterType"] == "DRAGON":
+        event = event["monsterSubType"]
+    else:
+        event = event["monsterType"]
+
+    if event == "BARON_NASHOR":
+        return "[B](#mt-barons)"
+    elif event == "RIFTHERALD":
+        return "[H](#mt-herald)"
+    elif event == "FIRE_DRAGON":
+        return "[I](#mt-infernal)"
+    elif event == "EARTH_DRAGON":
+        return "[M](#mt-mountain)"
+    elif event == "WATER_DRAGON":
+        return "[O](#mt-ocean)"
+    else:
+        return "[C](#mt-cloud)"
+
+def split_events(events):
+    objectives = [[], []]
+    for i, event in enumerate(events):
+        if event["killerId"] <= 5:
+            objectives[0].append(f"{event_converter(event)}^{i + 1}")
+        else:
+            objectives[1].append(f"{event_converter(event)}^{i + 1}")
+
+    print(objectives)
+
 if __name__ == '__main__':
     # match_history = sys.argv[1].split("/")[-1]
-    match_history = "550246?gameHash=a7918e3f4936213b&tab=overview"
-    with open("champion.json", "r") as json_data:
-        champions = json.load(json_data)
+    # match_history = "550246?gameHash=a7918e3f4936213b&tab=overview"
+    # with open("champion.json", "r") as json_data:
+    #     champions = json.load(json_data)
 
-    request = requests.get(API_BASE_URL.format(match_history)).json()
-    players = request["participants"]
-    game_duration = round(request["gameDuration"] / 60)
-    teams = request["teams"]
+    # request = requests.get(API_BASE_URL.format(match_history)).json()
+    # players = request["participants"]
+    # game_duration = round(request["gameDuration"] / 60)
+    # teams = request["teams"]
 
-    player_info = request["participantIdentities"]
-    player_objects = [create_player(player_info, player) for player in players]
+    # player_info = request["participantIdentities"]
+    # player_objects = [create_player(player_info, player) for player in players]
 
-    players_1 = player_objects[:5]
-    players_2 = player_objects[5:]
+    # players_1 = player_objects[:5]
+    # players_2 = player_objects[5:]
 
-    team_1_kda = team_kda(players_1)
-    team_1_short = players_1[0].team
-    team_2_kda = team_kda(players_2)
-    team_2_short = players_2[0].team
+    # team_1_kda = team_kda(players_1)
+    # team_1_short = players_1[0].team
+    # team_2_kda = team_kda(players_2)
+    # team_2_short = players_2[0].team
 
-    print_scoreboard()
+    # print_scoreboard()
+        
