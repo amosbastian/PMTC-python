@@ -2,7 +2,7 @@ import json
 import requests
 import sys
 
-API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/ESPORTSTMNT06/"
+API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/"
 
 # /r/LeagueOfLegends stuff
 VS = "[vs](#mt-kills)"
@@ -241,19 +241,26 @@ def create_post(team_1, team_2):
     scoreboard_section(team_1, team_2)
 
 if __name__ == '__main__':
-    match_history = sys.argv[1].split("/")[-1]
+    argument = sys.argv[1].split("/")
+    match_history = argument[-1]
+    region = argument[-2]
     match_id, match_hash = match_history.split("?gameHash=")
 
     with open("champion.json", "r") as json_data:
         champions = json.load(json_data)
 
+    try:
+        request = requests.get("{}{}/{}".format(API_BASE_URL, region,
+            match_history)).json()
+    except Exception as error:
+        sys.exit("Please enter a valid match history url.")
+
     # Get all the information needed to create the players and teams
-    request = requests.get("{}{}".format(API_BASE_URL, match_history)).json()
     teams = request["teams"]
     player_list = request["participants"]
     player_info = request["participantIdentities"]
-    game_events = get_events("{}{}/timeline?gameHash={}".format(API_BASE_URL,
-        match_id, match_hash))
+    game_events = get_events("{}{}/{}/timeline?gameHash={}".format(API_BASE_URL,
+        region, match_id, match_hash))
     game_duration = round(request["gameDuration"] / 60)
 
     # Create the teams and create the post
