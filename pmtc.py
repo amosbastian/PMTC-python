@@ -210,11 +210,11 @@ def ban_section(team_1, team_2):
     print("||**Bans 1**|**Bans 2**|{}|{}|{}|**Objectives**".format(GOLD,
         VS, TOWERS))
     print("|:--|:--:|:--:|:--:|:--:|:--:|:--:|")
-    print("|{}|{}|{}|{:.2f}k|{}|{}|{}|".format(team_1.short, 
+    print("|{}|{}|{}|{:.1f}k|{}|{}|{}|".format(team_1.short, 
         ' '.join(team_1.bans[0]), ' '.join(team_1.bans[1]),
         team_1.gold / 1000.0, team_1.kills, team_1.towers,
         ' '.join(team_1.events)))
-    print("|{}|{}|{}|{:.2f}k|{}|{}|{}|\n".format(team_2.short, 
+    print("|{}|{}|{}|{:.1f}k|{}|{}|{}|\n".format(team_2.short, 
         ' '.join(team_2.bans[0]), ' '.join(team_2.bans[1]),
         team_2.gold / 1000.0, team_2.kills, team_2.towers,
         ' '.join(team_2.events)))
