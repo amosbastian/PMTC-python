@@ -6,6 +6,20 @@ from bs4 import BeautifulSoup
 from collections import namedtuple
 
 def create_players(table):
+    """
+    Loop through given table and create Player objects with the following
+    attributes:
+        - Nationality
+        - Name
+        - Kills
+        - Assists
+        - Deaths
+        - KAST
+        - K/D Diff
+        - ADR
+        - FK Diff
+        - Rating
+    """
     team_data = []
     Player = namedtuple("Player", ["name", "k", "a", "d", "kast", "kddiff",
         "adr", "fkdiff", "rating", "nationality"])
@@ -20,9 +34,15 @@ def create_players(table):
     return team_data
 
 def team_logo(team):
+    """
+    Takes a team's name and (hopefully) converts it to a team's logo on Reddit.
+    """
     return "[](#{}-logo)".format(team.lower())
 
 def print_scoreboard(team):
+    """
+    Prints the scoreboard of the given team.
+    """
     for player in team.players:
         nationality = pycountry.countries.get(name=player.nationality).alpha_2
         print("|[](#lang-{}) {}|{}|{}|{}|{}|".format(nationality.lower(),
@@ -30,6 +50,9 @@ def print_scoreboard(team):
             player.d.split()[0], player.rating))
 
 def create_post(team_1, team_2):
+    """
+    Prints the entire scoreboard for both teams.
+    """
     print("|{} **{}**|**K**|**A**|**D**|**Rating**|".format(
         team_logo(team_1.name), team_1.name))
     print("|:--|:--:|:--:|:--:|:--:|")
@@ -48,17 +71,13 @@ if __name__ == '__main__':
         sys.exit("{}: Please enter a valid URL.".format(repr(error)))
 
     soup = BeautifulSoup(response.text, "lxml")
-    
     Team = namedtuple("Team", ["name", "players"])
     
     stats_tables = soup.find_all("table", {"class" : "stats-table"})
     
     table_1 = stats_tables[0]
-    # print(table_1)
     table_2 = stats_tables[1]
 
     team_1 = Team(table_1.find_all("th")[0].text, create_players(table_1))
     team_2 = Team(table_2.find_all("th")[0].text, create_players(table_2))
     create_post(team_1, team_2)
-
-    print()
