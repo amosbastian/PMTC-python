@@ -1,0 +1,166 @@
+{
+  "100T": {
+    "logo": "100t",
+    "name": "100 Thieves"
+  },
+  "Ast": {
+    "logo": "astralis",
+    "name": "Astralis"
+  },
+  "AVNGR": {
+    "logo": "avangar",
+    "name": "AVANGAR"
+  },
+  "BIG": {
+    "logo": "big",
+    "name": "BIG"
+  },
+  "C9": {
+    "logo": "cloud9",
+    "name": "Cloud9"
+  },
+  "coL": {
+    "logo": "complexity",
+    "name": "compLexity Gaming"
+  },
+  "nV": {
+    "logo": "envyus",
+    "name": "Team EnVyUs"
+  },
+  "F3": {
+    "logo": "f3",
+    "name": "FlipSid3 Tactics"
+  },
+  "Flash": {
+    "logo": "flash",
+    "name": "Flash Gaming"
+  },
+  "FaZe": {
+    "logo": "faze",
+    "name": "FaZe Clan"
+  },
+  "FNC": {
+    "logo": "fnatic",
+    "name": "Fnatic"
+  },
+  "G2": {
+    "logo": "g2",
+    "name": "G2 Esports"
+  },
+  "Ghost": {
+    "logo": "ghost",
+    "name": "Ghost Gaming"
+  },
+  "GMB": {
+    "logo": "gambit",
+    "name": "Gambit Esports"
+  },
+  "GOD": {
+    "logo": "godsent",
+    "name": "GODSENT"
+  },
+  "Heroic": {
+    "logo": "heroic",
+    "name": "Heroic"
+  },
+  "HR": {
+    "logo": "hr",
+    "name": "HellRaisers"
+  },
+  "TK": {
+    "logo": "kinguin",
+    "name": "Team Kinguin"
+  },
+  "LDLC": {
+    "logo": "ldlcnew",
+    "name": "Team LDLC.com"
+  },
+  "LG": {
+    "logo": "lg",
+    "name": "Luminosity Gaming"
+  },
+  "mouz": {
+    "logo": "msports",
+    "name": "mousesports"
+  },
+  "MSF": {
+    "logo": "misfits",
+    "name": "Misfits"
+  },
+  "Na'Vi": {
+    "logo": "navi",
+    "name": "Natus Vincere"
+  },
+  "NiP": {
+    "logo": "nip",
+    "name": "Ninjas In Pyjamas"
+  },
+  "North": {
+    "logo": "north",
+    "name": "North"
+  },
+  "NRG": {
+    "logo": "nrg",
+    "name": "NRG Esports"
+  },
+  "OG": {
+    "logo": "optic",
+    "name": "OpTic Gaming"
+  },
+  "QBF": {
+    "logo": "quantum",
+    "name": "Quantum Bellator Fire"
+  },
+  "RNG": {
+    "logo": "renegades",
+    "name": "Renegades"
+  },
+  "Rise": {
+    "logo": "risenation",
+    "name": "Rise Nation"
+  },
+  "Rogue": {
+    "logo": "rogue",
+    "name": "Rogue"
+  },
+  "SK": {
+    "logo": "sk",
+    "name": "SK Gaming"
+  },
+  "Spirit": {
+    "logo": "spirit",
+    "name": "Team Spirit"
+  },
+  "SPY": {
+    "logo": "splyce",
+    "name": "Splyce"
+  },
+  "Sprout": {
+    "logo": "sprout",
+    "name": "Sprout"
+  },
+  "SS": {
+    "logo": "ssoldiers",
+    "name": "Space Soldiers"
+  },
+  "Tengri": {
+    "logo": "tengri",
+    "name": "Tengri"
+  },
+  "Liquid": {
+    "logo": "tl",
+    "name": "Team Liquid"
+  },
+  "TyL": {
+    "logo": "tyloo",
+    "name": "TyLoo"
+  },
+  "Vega": {
+    "logo": "vega",
+    "name": "Vega Squadron"
+  },
+  "VP": {
+    "logo": "vp",
+    "name": "Virtus.pro"
+  }
+}
