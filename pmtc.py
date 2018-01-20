@@ -241,7 +241,7 @@ def create_post(team_1, team_2):
     scoreboard_section(team_1, team_2)
 
 if __name__ == '__main__':
-    argument = sys.argv[1].split("/")
+    argument = str(sys.argv[1]).split("/")
     match_history = argument[-1]
     region = argument[-2]
     match_id, match_hash = match_history.split("?gameHash=")
