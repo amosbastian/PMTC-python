@@ -253,7 +253,7 @@ if __name__ == '__main__':
         request = requests.get("{}{}/{}".format(API_BASE_URL, region,
             match_history)).json()
     except Exception as error:
-        sys.exit("Please enter a valid match history url.")
+        sys.exit("Please enter a valid match history URL.")
 
     # Get all the information needed to create the players and teams
     teams = request["teams"]
