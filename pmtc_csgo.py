@@ -1,5 +1,7 @@
-import requests
 import pycountry
+import requests
+import sys
+
 from bs4 import BeautifulSoup
 from collections import namedtuple
 
@@ -36,7 +38,15 @@ def create_post(team_1, team_2):
     print_scoreboard(team_2)
 
 if __name__ == '__main__':
-    response = requests.get("https://www.hltv.org/stats/matches/mapstatsid/59934/g2-vs-cloud9")
+    url = str(sys.argv[1])
+    if not "www.hltv.org" in url:
+        print("Please enter a URL from www.hltv.org.")
+
+    try:
+        response = requests.get(url)
+    except Exception as error:
+        sys.exit("{}: Please enter a valid URL.".format(repr(error)))
+
     soup = BeautifulSoup(response.text, "lxml")
     
     Team = namedtuple("Team", ["name", "players"])
