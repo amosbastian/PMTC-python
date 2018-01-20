@@ -1,3 +1,4 @@
+import json
 import pycountry
 import requests
 import sys
@@ -66,11 +67,14 @@ def create_post(team_1, team_2):
     """
     Prints the entire scoreboard for both teams.
     """
-    print("|{} **{}**|**K**|**A**|**D**|**Rating**|".format(
-        team_logo(team_1.name), team_1.name))
+    logo = teams[team_1.name]["logo"]
+    print("|{} **{}**|**K**|**A**|**D**|**Rating**|".format(team_logo(logo),
+        team_1.name))
     print("|:--|:--:|:--:|:--:|:--:|")
     print_scoreboard(team_1)
-    print("|{} **{}**|".format(team_logo(team_2.name, False), team_2.name))
+
+    logo = teams[team_2.name]["logo"]
+    print("|{} **{}**|".format(team_logo(logo, False), team_2.name))
     print_scoreboard(team_2)
 
 if __name__ == '__main__':
@@ -83,14 +87,20 @@ if __name__ == '__main__':
     except Exception as error:
         sys.exit("{}: Please enter a valid URL.".format(repr(error)))
 
+    with open("csgo.json", "r") as json_data:
+        teams = json.load(json_data)
+
     soup = BeautifulSoup(response.text, "lxml")
     Team = namedtuple("Team", ["name", "players"])
     
     stats_tables = soup.find_all("table", {"class" : "stats-table"})
-    
-    table_1 = stats_tables[0]
-    table_2 = stats_tables[1]
 
-    team_1 = Team(table_1.find_all("th")[0].text, create_players(table_1))
-    team_2 = Team(table_2.find_all("th")[0].text, create_players(table_2))
-    create_post(team_1, team_2)
+    try:
+        table_1 = stats_tables[0]
+        table_2 = stats_tables[1]
+
+        team_1 = Team(table_1.find_all("th")[0].text, create_players(table_1))
+        team_2 = Team(table_2.find_all("th")[0].text, create_players(table_2))
+        create_post(team_1, team_2)
+    except Exception as error:
+        print("Please enter a URL from the detailed stats page.")
