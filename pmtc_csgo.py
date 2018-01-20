@@ -33,19 +33,32 @@ def create_players(table):
             team_data.append(Player(*player))
     return team_data
 
-def team_logo(team):
+def team_logo(team, white=True):
     """
     Takes a team's name and (hopefully) converts it to a team's logo on Reddit.
     """
-    return "[](#{}-logo)".format(team.lower())
+    if white:
+        return "[](#{}w-logo)".format(team.lower())
+    else:
+        return "[](#{}-logo)".format(team.lower())
+
+def country_converter(country):
+    if country == "Russia":
+        return "ru"
+    elif country == "Czech Republic":
+        return "cz"
 
 def print_scoreboard(team):
     """
     Prints the scoreboard of the given team.
     """
     for player in team.players:
-        nationality = pycountry.countries.get(name=player.nationality).alpha_2
-        print("|[](#lang-{}) {}|{}|{}|{}|{}|".format(nationality.lower(),
+        try:
+            nat = pycountry.countries.get(name=player.nationality).alpha_2
+        except Exception as error:
+            nat = country_converter(player.nationality)
+
+        print("|[](#lang-{}) {}|{}|{}|{}|{}|".format(nat.lower(),
             player.name, player.k.split()[0], player.a.split()[0],
             player.d.split()[0], player.rating))
 
@@ -57,7 +70,7 @@ def create_post(team_1, team_2):
         team_logo(team_1.name), team_1.name))
     print("|:--|:--:|:--:|:--:|:--:|")
     print_scoreboard(team_1)
-    print("|{} **{}**|".format(team_logo(team_2.name), team_2.name))
+    print("|{} **{}**|".format(team_logo(team_2.name, False), team_2.name))
     print_scoreboard(team_2)
 
 if __name__ == '__main__':
