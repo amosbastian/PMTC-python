@@ -1,147 +1,147 @@
 {
-  "100T": {
+  "100 Thieves": {
     "logo": "100t",
-    "name": "100 Thieves"
+    "name": "100T"
   },
-  "Ast": {
+  "Astralis": {
     "logo": "astralis",
-    "name": "Astralis"
+    "name": "Ast"
   },
-  "AVNGR": {
+  "AVANGAR": {
     "logo": "avangar",
-    "name": "AVANGAR"
+    "name": "AVNGR"
   },
   "BIG": {
     "logo": "big",
     "name": "BIG"
   },
-  "C9": {
+  "Cloud9": {
     "logo": "cloud9",
-    "name": "Cloud9"
+    "name": "C9"
   },
-  "coL": {
+  "compLexity Gaming": {
     "logo": "complexity",
-    "name": "compLexity Gaming"
+    "name": "coL"
   },
-  "nV": {
+  "Team EnVyUs": {
     "logo": "envyus",
-    "name": "Team EnVyUs"
+    "name": "nV"
   },
-  "F3": {
+  "FlipSid3 Tactics": {
     "logo": "f3",
-    "name": "FlipSid3 Tactics"
+    "name": "F3"
   },
-  "Flash": {
+  "Flash Gaming": {
     "logo": "flash",
-    "name": "Flash Gaming"
+    "name": "Flash"
   },
-  "FaZe": {
+  "FaZe Clan": {
     "logo": "faze",
-    "name": "FaZe Clan"
+    "name": "FaZe"
   },
-  "FNC": {
+  "Fnatic": {
     "logo": "fnatic",
-    "name": "Fnatic"
+    "name": "FNC"
   },
-  "G2": {
+  "G2 Esports": {
     "logo": "g2",
-    "name": "G2 Esports"
+    "name": "G2"
   },
-  "Ghost": {
+  "Ghost Gaming": {
     "logo": "ghost",
-    "name": "Ghost Gaming"
+    "name": "Ghost"
   },
-  "GMB": {
+  "Gambit Esports": {
     "logo": "gambit",
-    "name": "Gambit Esports"
+    "name": "GMB"
   },
-  "GOD": {
+  "GODSENT": {
     "logo": "godsent",
-    "name": "GODSENT"
+    "name": "GOD"
   },
   "Heroic": {
     "logo": "heroic",
     "name": "Heroic"
   },
-  "HR": {
+  "HellRaisers": {
     "logo": "hr",
-    "name": "HellRaisers"
+    "name": "HR"
   },
-  "TK": {
+  "Team Kinguin": {
     "logo": "kinguin",
-    "name": "Team Kinguin"
+    "name": "TK"
   },
-  "LDLC": {
+  "Team LDLC.com": {
     "logo": "ldlcnew",
-    "name": "Team LDLC.com"
+    "name": "LDLC"
   },
-  "LG": {
+  "Luminosity Gaming": {
     "logo": "lg",
-    "name": "Luminosity Gaming"
+    "name": "LG"
   },
-  "mouz": {
+  "mousesports": {
     "logo": "msports",
-    "name": "mousesports"
+    "name": "mouz"
   },
-  "MSF": {
+  "Misfits": {
     "logo": "misfits",
-    "name": "Misfits"
+    "name": "MSF"
   },
-  "Na'Vi": {
+  "Natus Vincere": {
     "logo": "navi",
-    "name": "Natus Vincere"
+    "name": "Na'Vi"
   },
-  "NiP": {
+  "Ninjas In Pyjamas": {
     "logo": "nip",
-    "name": "Ninjas In Pyjamas"
+    "name": "NiP"
   },
   "North": {
     "logo": "north",
     "name": "North"
   },
-  "NRG": {
+  "NRG Esports": {
     "logo": "nrg",
-    "name": "NRG Esports"
+    "name": "NRG"
   },
-  "OG": {
+  "OpTic Gaming": {
     "logo": "optic",
-    "name": "OpTic Gaming"
+    "name": "OG"
   },
-  "QBF": {
+  "Quantum Bellator Fire": {
     "logo": "quantum",
-    "name": "Quantum Bellator Fire"
+    "name": "QBF"
   },
-  "RNG": {
+  "Renegades": {
     "logo": "renegades",
-    "name": "Renegades"
+    "name": "RNG"
   },
-  "Rise": {
+  "Rise Nation": {
     "logo": "risenation",
-    "name": "Rise Nation"
+    "name": "Rise"
   },
   "Rogue": {
     "logo": "rogue",
     "name": "Rogue"
   },
-  "SK": {
+  "SK Gaming": {
     "logo": "sk",
-    "name": "SK Gaming"
+    "name": "SK"
   },
-  "Spirit": {
+  "Team Spirit": {
     "logo": "spirit",
-    "name": "Team Spirit"
+    "name": "Spirit"
   },
-  "SPY": {
+  "Splyce": {
     "logo": "splyce",
-    "name": "Splyce"
+    "name": "SPY"
   },
   "Sprout": {
     "logo": "sprout",
     "name": "Sprout"
   },
-  "SS": {
+  "Space Soldiers": {
     "logo": "ssoldiers",
-    "name": "Space Soldiers"
+    "name": "SS"
   },
   "Tengri": {
     "logo": "tengri",
@@ -149,18 +149,18 @@
   },
   "Liquid": {
     "logo": "tl",
-    "name": "Team Liquid"
+    "name": "TL"
   },
-  "TyL": {
+  "TyLoo": {
     "logo": "tyloo",
-    "name": "TyLoo"
+    "name": "TyL"
   },
-  "Vega": {
+  "Vega Squadron": {
     "logo": "vega",
-    "name": "Vega Squadron"
+    "name": "Vega"
   },
-  "VP": {
+  "Virtus.pro": {
     "logo": "vp",
-    "name": "Virtus.pro"
+    "name": "VP"
   }
 }
