@@ -1,166 +1,207 @@
 {
   "100 Thieves": {
     "logo": "100t",
-    "name": "100T"
+    "name": "100T",
+    "white": true
   },
   "Astralis": {
     "logo": "astralis",
-    "name": "Ast"
+    "name": "Ast",
+    "white": false
   },
   "AVANGAR": {
     "logo": "avangar",
-    "name": "AVNGR"
+    "name": "AVNGR",
+    "white": false
   },
   "BIG": {
     "logo": "big",
-    "name": "BIG"
+    "name": "BIG",
+    "white": true
   },
   "Cloud9": {
     "logo": "cloud9",
-    "name": "C9"
+    "name": "C9",
+    "white": false
   },
   "compLexity Gaming": {
     "logo": "complexity",
-    "name": "coL"
+    "name": "coL",
+    "white": false
   },
   "Team EnVyUs": {
     "logo": "envyus",
-    "name": "nV"
+    "name": "nV",
+    "white": true
   },
   "FlipSid3 Tactics": {
     "logo": "f3",
-    "name": "F3"
+    "name": "F3",
+    "white": true
   },
   "Flash Gaming": {
     "logo": "flash",
-    "name": "Flash"
+    "name": "Flash",
+    "white": false
   },
   "FaZe Clan": {
     "logo": "faze",
-    "name": "FaZe"
+    "name": "FaZe",
+    "white": true
   },
   "Fnatic": {
     "logo": "fnatic",
-    "name": "FNC"
+    "name": "FNC",
+    "white": false
   },
   "G2 Esports": {
     "logo": "g2",
-    "name": "G2"
+    "name": "G2",
+    "white": false
   },
   "Ghost Gaming": {
     "logo": "ghost",
-    "name": "Ghost"
+    "name": "Ghost",
+    "white": true
   },
   "Gambit Esports": {
     "logo": "gambit",
-    "name": "GMB"
+    "name": "GMB",
+    "white": false
   },
   "GODSENT": {
     "logo": "godsent",
-    "name": "GOD"
+    "name": "GOD",
+    "white": false
   },
   "Heroic": {
     "logo": "heroic",
-    "name": "Heroic"
+    "name": "Heroic",
+    "white": true
   },
   "HellRaisers": {
     "logo": "hr",
-    "name": "HR"
+    "name": "HR",
+    "white": false
   },
   "Team Kinguin": {
     "logo": "kinguin",
-    "name": "TK"
+    "name": "TK",
+    "white": false
   },
   "Team LDLC.com": {
     "logo": "ldlcnew",
-    "name": "LDLC"
+    "name": "LDLC",
+    "white": true
   },
   "Luminosity Gaming": {
     "logo": "lg",
-    "name": "LG"
+    "name": "LG",
+    "white": false
   },
   "mousesports": {
     "logo": "msports",
-    "name": "mouz"
+    "name": "mouz",
+    "white": false
   },
   "Misfits": {
     "logo": "misfits",
-    "name": "MSF"
+    "name": "MSF",
+    "white": false
   },
   "Natus Vincere": {
     "logo": "navi",
-    "name": "Na'Vi"
+    "name": "Na'Vi",
+    "white": false
   },
   "Ninjas In Pyjamas": {
     "logo": "nip",
-    "name": "NiP"
+    "name": "NiP",
+    "white": true
   },
   "North": {
     "logo": "north",
-    "name": "North"
+    "name": "North",
+    "white": false
   },
   "NRG Esports": {
     "logo": "nrg",
-    "name": "NRG"
+    "name": "NRG",
+    "white": true
   },
   "OpTic Gaming": {
     "logo": "optic",
-    "name": "OG"
+    "name": "OG",
+    "white": true
   },
   "Quantum Bellator Fire": {
     "logo": "quantum",
-    "name": "QBF"
+    "name": "QBF",
+    "white": false
   },
   "Renegades": {
     "logo": "renegades",
-    "name": "RNG"
+    "name": "RNG",
+    "white": false
   },
   "Rise Nation": {
     "logo": "risenation",
-    "name": "Rise"
+    "name": "Rise",
+    "white": false
   },
   "Rogue": {
     "logo": "rogue",
-    "name": "Rogue"
+    "name": "Rogue",
+    "white": false
   },
   "SK Gaming": {
     "logo": "sk",
-    "name": "SK"
+    "name": "SK",
+    "white": true
   },
   "Team Spirit": {
     "logo": "spirit",
-    "name": "Spirit"
+    "name": "Spirit",
+    "white": false
   },
   "Splyce": {
     "logo": "splyce",
-    "name": "SPY"
+    "name": "SPY",
+    "white": false
   },
   "Sprout": {
     "logo": "sprout",
-    "name": "Sprout"
+    "name": "Sprout",
+    "white": false
   },
   "Space Soldiers": {
     "logo": "ssoldiers",
-    "name": "SS"
+    "name": "SS",
+    "white": false
   },
   "Tengri": {
     "logo": "tengri",
-    "name": "Tengri"
+    "name": "Tengri",
+    "white": false
   },
   "Liquid": {
     "logo": "tl",
-    "name": "TL"
+    "name": "TL",
+    "white": true
   },
   "TyLoo": {
     "logo": "tyloo",
-    "name": "TyL"
+    "name": "TyL",
+    "white": false
   },
   "Vega Squadron": {
     "logo": "vega",
-    "name": "Vega"
+    "name": "Vega",
+    "white": false
   },
   "Virtus.pro": {
     "logo": "vp",
-    "name": "VP"
+    "name": "VP",
+    "white": false
   }
 }
