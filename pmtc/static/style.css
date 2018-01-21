@@ -1,0 +1,25 @@
+body {
+    padding-top: 3.5rem;
+}
+
+.lol {
+    color: white;
+    background-color: red;
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+.csgo {
+    color: white;
+    padding-top: 20px;
+    background-color: blue;
+    text-align: center;
+}
+
+.overwatch {
+    color: white;
+    text-align: right;
+    background-color: green;
+    padding-top: 20px;
+    padding-right: 40px;
+}

@@ -10,5 +10,13 @@ def index():
 def about():
     return render_template("about.html")
 
+@app.route("/lol")
+def lol():
+    return render_template("lol.html")
+
+@app.route("/csgo")
+def csgo():
+    return render_template("csgo.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
