@@ -12,12 +12,11 @@ git clone https://github.com/amosbastian/mhp.git
 ```
 Usage
 --------------------
-Once cloned you can simply run the program you want to use with with Python (works with Python 2.7, 3.3, 3.4, 3.5, and 3.6), using the match history's URL as a command line argument.
+Once cloned you can simply run the program you want to use with with Python (works with Python 2.7, 3.3, 3.4, 3.5, and 3.6), using the match history's URL or HLTV URL as a command line argument.
 
 #### League of Legends
 
 ```
-cd pmc
 python pmc.py "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT06/550247?gameHash=e8da58c50577df24&tab=overview"
 ```
 
@@ -78,6 +77,6 @@ which outputs
 
 What can I use this for?
 --------------------
-If you want to create a post-match thread on [/r/LeagueOfLegends](https://www.reddit.com/r/leagueoflegends/) or [/r/GlobalOffensive/](https://www.reddit.com/r/GlobalOffensive/) and you are too lazy to manually enter everything like me, then use this! The gif below shows how easy this is!
+If you want to create a post-match thread on [/r/LeagueOfLegends](https://www.reddit.com/r/leagueoflegends/) or [/r/GlobalOffensive/](https://www.reddit.com/r/GlobalOffensive) and you are too lazy to manually enter everything like me, then use this! The gif below shows how easy this is!
 
 ![](https://i.imgur.com/ThMJrOJ.gif)
