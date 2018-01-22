@@ -1,1 +1,1 @@
-web: gunicorn pmtc/app:app
+web: gunicorn --chdir pmtc app:app
