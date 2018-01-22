@@ -2,7 +2,14 @@
 
 {% block body %}
 <div class="lol">
-    
-    asdfsdafasdfsdafadsfad
+    <form action="/lol/pmt" method="get">
+        <input type="text" name="match-history">
+        <input type="submit" value="Submit">
+    </form>
 </div>
+
+{% if result %}
+<textarea cols="50" rows="4" name="result">{{ result }}</textarea>
+{% endif %}
+
 {% endblock %}
