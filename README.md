@@ -17,7 +17,8 @@ Once cloned you can simply run the program you want to use with with Python (wor
 #### League of Legends
 
 ```
-python pmc.py "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT06/550247?gameHash=e8da58c50577df24&tab=overview"
+cd PMTC/pmtc
+python pmtc_lol.py "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT06/550247?gameHash=e8da58c50577df24&tab=overview"
 ```
 
 with outputs
