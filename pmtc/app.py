@@ -16,11 +16,12 @@ def about():
 def lol():
     return render_template("lol.html")
 
-@app.route("/lol/pmt", methods=["GET"])
+@app.route("/lol", methods=["POST"])
 def lol_pmt(result=None):
-    url = request.args.get("match-history", None)
-    if url:
-        result = subprocess.check_output([sys.executable, "pmtc_lol.py", url])
+    if request.method == "POST":
+        url = request.form["match-history"]
+        result = subprocess.check_output([sys.executable, "pmtc_lol.py",
+            url]).decode("ascii")
     return render_template("lol.html", result=result)
 
 @app.route("/csgo")

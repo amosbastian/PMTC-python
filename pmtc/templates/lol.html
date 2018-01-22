@@ -1,15 +1,19 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div class="lol">
-    <form action="/lol/pmt" method="get">
-        <input type="text" name="match-history">
-        <input type="submit" value="Submit">
-    </form>
+<div class="container" style="padding-top: 20px;">
+    <div class="form-group">
+        <form class="form-horizontal" method="POST" role="form">
+            <div class="input-group mb-3">
+                <input type="text" name="match-history" class="form-control" placeholder="Match history">
+                <div class="input-group-append">
+                    <input class="btn btn-outline-secondary" type="submit" value="Create">
+                </div>
+            </div>
+        </form>
+        {% if result %}
+            <textarea name="result" style="width:100%; height: 500px;">{{ result }}</textarea>
+        {% endif %}
+    </div>
 </div>
-
-{% if result %}
-<textarea cols="50" rows="4" name="result">{{ result }}</textarea>
-{% endif %}
-
 {% endblock %}
