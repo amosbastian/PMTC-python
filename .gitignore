@@ -10,3 +10,7 @@ __pycache__/
 *.csv
 csvparse.py
 test.py
+
+# HTML
+test.html
+login.html
