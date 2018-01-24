@@ -2,3 +2,4 @@ beautifulsoup4==4.6.0
 Flask==0.12.2
 pycountry==17.9.23
 requests==2.18.4
+gunicorn==19.7.1
