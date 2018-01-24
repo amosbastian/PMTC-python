@@ -1,1 +1,1 @@
-web: gunicorn python pmtc app
+web: gunicorn pmtc:app
