@@ -18,7 +18,10 @@
     </form>
     {% if result %}
     <div class="input-group">
-        <textarea class="form-control custom-control" style="resize:none; height: 500px; overflow:hidden;" name="result">{{ result }}</textarea>
+        <textarea class="form-control custom-control" style="resize: none; height: 500px; overflow:hidden;" name="result" id="result">{{ result }}</textarea>
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" data-clipboard-target="#result" type="submit">Copy</button>
+        </div>
     </div>
     {% endif %}
     <div id="loading" style="display: none;" class="row justify-content-center align-self-center">

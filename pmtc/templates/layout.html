@@ -8,8 +8,42 @@
 </head>
 <body>
     {% include "navbar.html" %}
-    {% block body %}{% endblock %}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    {% block body %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $('.btn-outline-primary').tooltip({
+          trigger: 'click',
+          placement: 'left'
+        });
+
+        function setTooltip(btn, message) {
+          btn.tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+        }
+
+        function hideTooltip(btn) {
+          setTimeout(function() {
+            btn.tooltip('hide');
+          }, 1000);
+        }
+
+        var clipboard = new Clipboard('.btn-outline-primary');
+
+        clipboard.on('success', function(e) {
+            var btn = $(e.trigger);
+          setTooltip(btn, 'Copied');
+          hideTooltip(btn);
+        });
+    </script>
 </body>
 </html>
