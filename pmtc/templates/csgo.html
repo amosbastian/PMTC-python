@@ -1,5 +1,31 @@
 {% extends "layout.html" %}
 
 {% block body %}
-COUNTER-STRIKE: GLOBAL OFFENSIVE
+<div class="container h-100"" style="padding-top: 20px;">
+    <form method="POST" action="{{ url_for('csgo') }}" class="form-horizontal">
+        {{ form.csrf_token }}
+        <div class="input-group mb-3">
+            {{ form.hltv(class_="form-control") }}
+            <div class="input-group-append">
+                <input class="btn btn-outline-secondary" type="submit" value="Create" onclick="$('#loading').show();">
+            </div>
+        </div>
+        {% for error in form.hltv.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </form>
+    {% if result %}
+        <textarea name="result" style="width:100%; height: 500px;">{{ result }}</textarea>
+    {% endif %}
+    <div id="loading" style="display: none;" class="row justify-content-center align-self-center">
+        <div class="sk-folding-cube center-block">
+          <div class="sk-cube1 sk-cube"></div>
+          <div class="sk-cube2 sk-cube"></div>
+          <div class="sk-cube4 sk-cube"></div>
+          <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+</div>
 {% endblock %}

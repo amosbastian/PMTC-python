@@ -11,6 +11,17 @@ html, body {
     margin-bottom: 0;
 }
 
+a.view-on-github {
+  color: white;
+  text-decoration: none;
+}
+
+.view-on-github {
+    padding-left: 27px;
+    background: url(/static/images/github.png) 0 center no-repeat;
+    background-size: 20px 20px;
+}
+
 .div-pmtc {
     max-width: 100%;
     max-height: 100%;
