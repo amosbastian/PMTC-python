@@ -1,6 +1,9 @@
 import json
 import requests
 import sys
+import os
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 API_BASE_URL = "https://acs.leagueoflegends.com/v1/stats/game/"
 
@@ -246,7 +249,7 @@ if __name__ == '__main__':
     region = argument[-2]
     match_id, match_hash = match_history.split("?gameHash=")
 
-    with open("champion.json", "r") as json_data:
+    with open("{}/champion.json".format(directory), "r") as json_data:
         champions = json.load(json_data)
 
     try:

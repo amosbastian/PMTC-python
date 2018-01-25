@@ -2,9 +2,11 @@ from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, ValidationError
-
+import os
 import sys
 import subprocess
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "fuckoff"
@@ -33,8 +35,8 @@ def lol():
 
     if form.validate_on_submit():
         url = form.matchhistory.data
-        result = subprocess.check_output([sys.executable, "pmtc_lol.py",
-            url]).decode("ascii")
+        result = subprocess.check_output([sys.executable, 
+            "{}/pmtc_lol.py".format(directory), url]).decode("ascii")
         return render_template("lol.html", form=form, result=result)
     return render_template("lol.html", form=form)
 
@@ -52,8 +54,8 @@ def csgo():
     form = HLTVForm()
     if form.validate_on_submit():
         url = form.hltv.data
-        result = subprocess.check_output([sys.executable, "pmtc_csgo.py",
-            url]).decode("ascii")
+        result = subprocess.check_output([sys.executable,
+            "{}/pmtc_csgo.py".format(directory), url]).decode("ascii")
         return render_template("csgo.html", form=form, result=result)
     return render_template("csgo.html", form=form)
 

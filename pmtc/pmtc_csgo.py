@@ -2,9 +2,12 @@ import json
 import pycountry
 import requests
 import sys
+import os
 
 from bs4 import BeautifulSoup
 from collections import namedtuple
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def create_players(table):
     """
@@ -133,7 +136,7 @@ if __name__ == '__main__':
     url = str(sys.argv[1])
     response = get_response(url)
 
-    with open("csgo.json", "r") as json_data:
+    with open("{}/csgo.json".format(directory), "r") as json_data:
         teams = json.load(json_data)
 
     soup = BeautifulSoup(response.text, "lxml")
