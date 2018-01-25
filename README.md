@@ -8,7 +8,7 @@ Installation
 To install this program simply clone the repository
 
 ```bash
-git clone https://github.com/amosbastian/mhp.git
+git clone https://github.com/amosbastian/PMTC.git
 ```
 Usage
 --------------------
