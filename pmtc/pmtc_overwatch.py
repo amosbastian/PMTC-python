@@ -23,6 +23,8 @@ class Match(object):
         self.team_2_players = self.players(1)
         self.team_1_name = self.team_name(0)
         self.team_2_name = self.team_name(1)
+        self.team_1_short = self.team_1_name.split(" ")[-1]
+        self.team_2_short = self.team_2_name.split(" ")[-1]
 
     @property
     def teams(self):
@@ -38,7 +40,9 @@ class Match(object):
         return [re.sub(r"\s+", "", player.text) for player in players]
 
     def team_name(self, team_id):
-        pass
+        team = self.game[team_id]
+        name = team.find("div", {"class" : "game-stats-team-name"})
+        return name.text.split("\t")[2]
 
 if __name__ == '__main__':
     url = "https://www.over.gg/6470/phl-vs-gla-overwatch-league-season-1-stage-1-w2"
@@ -47,8 +51,8 @@ if __name__ == '__main__':
     
     matches = soup.find_all("div", {"class" : "game-wrapper"})
     game = matches[0].find_all("div", {"class" : "game-stats-team"})
-    print(game[0].find("div", {"class" : "game-stats-team-name"}).text)
-    # for i, match in enumerate(matches):
-    #     match = Match(i, match)
-    #     print(match.team_1_players)
-    #     print(match.team_2_players)
+    print(game[1].find("div", {"class" : "game-stats-team-name"}).text.split("\t"))
+    for i, match in enumerate(matches):
+        match = Match(i, match)
+        print(match.team_1_name + " vs. " + match.team_2_name)
+        print(match.team_1_short + " vs. " + match.team_2_short)
