@@ -8,7 +8,7 @@ Installation
 To install this program simply clone the repository
 
 ```bash
-git clone https://github.com/amosbastian/mhp.git
+git clone https://github.com/amosbastian/PMTC.git
 ```
 Usage
 --------------------
@@ -37,6 +37,14 @@ with outputs
 |Ruler [ezreal](#c-ezreal)|2-0-6|ADC|0-4-2|[sivir](#c-sivir) PraY|
 |CoreJJ [braum](#c-braum)|0-0-8|SUP|0-1-3|[taric](#c-taric) GorillA|
 ```
+
+or you can run the flask application locally with 
+
+```
+python app.py
+```
+
+and go to `http://localhost:5000/` to see it.
 
 #### Counter-Strike: Global Offensive
 
@@ -76,8 +84,16 @@ which outputs
 
 ```
 
+or you can run the flask application locally with 
+
+```
+python app.py
+```
+
+and go to `http://localhost:5000/` to see it.
+
 What can I use this for?
 --------------------
 If you want to create a post-match thread on [/r/LeagueOfLegends](https://www.reddit.com/r/leagueoflegends/) or [/r/GlobalOffensive/](https://www.reddit.com/r/GlobalOffensive) and you are too lazy to manually enter everything like me, then use this! The gif below shows how easy this is!
 
-![](https://i.imgur.com/ThMJrOJ.gif)
+![](https://i.imgur.com/ldoJQZt.gif)
