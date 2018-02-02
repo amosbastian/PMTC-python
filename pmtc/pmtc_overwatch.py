@@ -15,14 +15,40 @@ def get_response(url):
     except Exception as error:
         sys.exit("{}: Please enter a valid URL.".format(repr(error)))
 
+class Match(object):
+    def __init__(self, map_id, match):
+        self.id = map_id
+        self.match = match
+        self.team_1_players = self.players(0)
+        self.team_2_players = self.players(1)
+        self.team_1_name = self.team_name(0)
+        self.team_2_name = self.team_name(1)
+
+    @property
+    def teams(self):
+        return self.match.find_all("div", {"class" : "game-team"})
+
+    @property
+    def game(self):
+        return self.match.find_all("div", {"class" : "game-stats-team"})
+
+    def players(self, team_id):
+        team = self.teams[team_id]
+        players = team.find_all("a", {"class", "game-team-player"})
+        return [re.sub(r"\s+", "", player.text) for player in players]
+
+    def team_name(self, team_id):
+        pass
+
 if __name__ == '__main__':
     url = "https://www.over.gg/6470/phl-vs-gla-overwatch-league-season-1-stage-1-w2"
     response = get_response(url)
     soup = BeautifulSoup(response.text, "lxml")
     
-    game_wrappers = soup.find_all("div", {"class" : "game-wrapper"})
-    teams = game_wrappers[0].find_all("div", {"class" : "game-team"})
-    team_1_players = teams[0].find_all("a", {"class", "game-team-player"})
-    players_1 = [player.text for player in team_1_players]
-    for player in players_1:
-        print(re.sub(r"\s+", "", player))
+    matches = soup.find_all("div", {"class" : "game-wrapper"})
+    game = matches[0].find_all("div", {"class" : "game-stats-team"})
+    print(game[0].find("div", {"class" : "game-stats-team-name"}).text)
+    # for i, match in enumerate(matches):
+    #     match = Match(i, match)
+    #     print(match.team_1_players)
+    #     print(match.team_2_players)
