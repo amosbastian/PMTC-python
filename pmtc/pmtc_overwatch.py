@@ -67,13 +67,27 @@ class Match(object):
             {"class" : "game-stats-team-value"})
         return [game.text.strip() for game in g_]
 
+    @property
+    def mode(self):
+        if self.id == 0:
+            return "Hybrid"
+        elif self.id == 1:
+            return "Assault"
+        elif self.id == 2:
+            return "Control"
+        elif self.id == 3:
+            return "Escort"
+        else:
+            return "Control"
+
+
 def print_match(match, total):
     if not match.id == 0:
         print("\n")
     print("---\n\n###MAP {}/{}: {}".format(match.id + 1, total, match.map))
     print("\n**Winner:** {}\n".format(match.winner))
-    print("||{}|**|{}||\n|--:|--:|:--:|:--|:--|".format(match.team_1_short,
-        match.team_2_short))
+    print("||{}|*{}*|{}||\n|--:|--:|:--:|:--|:--|".format(match.team_1_short,
+        match.mode, match.team_2_short))
     for i in range(6):
         if i < len(match.team_1_score):
             print("|{}|{}|{}|{}|{}|".format(match.team_1_players[i],
