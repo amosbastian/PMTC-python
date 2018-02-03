@@ -16,9 +16,10 @@ def get_response(url):
         sys.exit("{}: Please enter a valid URL.".format(repr(error)))
 
 class Match(object):
-    def __init__(self, map_id, match):
+    def __init__(self, map_id, match, match_map):
         self.id = map_id
         self.match = match
+        self.map = match_map
         self.team_1_players = self.players(0)
         self.team_2_players = self.players(1)
         self.team_1_name = self.team_name(0)
@@ -51,8 +52,7 @@ class Match(object):
         name = name.text.split()
         if "Winner" in name:
             name.remove("Winner")
-            name = " ".join(name)
-            self.winner = name
+            self.winner = " ".join(name)
 
         name = " ".join(name)
         return name
@@ -67,6 +67,29 @@ class Match(object):
             {"class" : "game-stats-team-value"})
         return [game.text.strip() for game in g_]
 
+def print_match(match, total):
+    if not match.id == 0:
+        print("\n")
+    print("---\n\n###MAP {}/{}: {}".format(match.id + 1, total, match.map))
+    print("\n**Winner:** {}\n".format(match.winner))
+    print("||{}|**|{}||\n|--:|--:|:--:|:--|:--|".format(match.team_1_short,
+        match.team_2_short))
+    for i in range(6):
+        if i < len(match.team_1_score):
+            print("|{}|{}|{}|{}|{}|".format(match.team_1_players[i],
+                match.team_1_score[i], match.game_type[i],
+                match.team_2_score[i], match.team_2_players[i]))
+        else:
+            print("|{}||||{}|".format(match.team_1_players[i],
+                match.team_2_players[i]))
+        
+    if match.id + 1 == total:
+        print("\n---")
+
+def create_post(matches):
+    for match in matches:
+        print_match(match, len(matches))
+
 if __name__ == '__main__':
     url = "https://www.over.gg/6470/phl-vs-gla-overwatch-league-season-1-stage-1-w2"
     response = get_response(url)
@@ -74,8 +97,6 @@ if __name__ == '__main__':
     maps = soup.find_all("div", {"class" : "game-switch-map-name"})
     maps = [" ".join(map_.text.split()) for map_ in maps]
     matches = soup.find_all("div", {"class" : "game-wrapper"})
-    game = matches[3].find_all("div", {"class" : "game-stats-team"})
 
-    for i, match in enumerate(matches):
-        match = Match(i, match)
-        print(match.team_1_score)
+    matches = [Match(i, match, maps[i]) for i, match in enumerate(matches)]
+    create_post(matches)
