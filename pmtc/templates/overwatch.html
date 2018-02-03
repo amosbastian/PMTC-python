@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container h-100"" style="padding-top: 20px;">
+    <form method="POST" action="{{ url_for('overwatch') }}" class="form-horizontal">
+        {{ form.csrf_token }}
+        <div class="input-group mb-3">
+            {{ form.overgg(class_="form-control") }}
+            <div class="input-group-append">
+                <input class="btn btn-outline-secondary" type="submit" value="Create" onclick="$('#loading').show();">
+            </div>
+        </div>
+        {% for error in form.overgg.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </form>
+    {% if result %}
+    <div class="input-group">
+        <textarea class="form-control custom-control" style="resize: none; height: 500px; overflow:hidden;" name="result" id="result">{{ result }}</textarea>
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" data-clipboard-target="#result" type="submit">Copy</button>
+        </div>
+    </div>
+    {% endif %}
+    <div id="loading" style="display: none;" class="row justify-content-center align-self-center">
+        <div class="sk-folding-cube center-block">
+          <div class="sk-cube1 sk-cube"></div>
+          <div class="sk-cube2 sk-cube"></div>
+          <div class="sk-cube4 sk-cube"></div>
+          <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

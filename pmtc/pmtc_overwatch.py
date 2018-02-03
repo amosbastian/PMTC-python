@@ -2,6 +2,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import re
+import sys
 
 def get_response(url):
     """
@@ -105,7 +106,7 @@ def create_post(matches):
         print_match(match, len(matches))
 
 if __name__ == '__main__':
-    url = "https://www.over.gg/6470/phl-vs-gla-overwatch-league-season-1-stage-1-w2"
+    url = str(sys.argv[1])
     response = get_response(url)
     soup = BeautifulSoup(response.text, "lxml")
     maps = soup.find_all("div", {"class" : "game-switch-map-name"})

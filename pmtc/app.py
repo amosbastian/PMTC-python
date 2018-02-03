@@ -27,7 +27,7 @@ def is_matchhistory(form, field):
 
 class MatchHistoryForm(FlaskForm):
     matchhistory = StringField("matchhistory", validators=[InputRequired(),
-        is_matchhistory], render_kw={"placeholder": "Match history"})
+        is_matchhistory], render_kw={"placeholder" : "Match history"})
 
 @app.route("/lol", methods=["GET", "POST"])
 def lol():
@@ -47,7 +47,7 @@ def is_hltv(form, field):
 
 class HLTVForm(FlaskForm):
     hltv = StringField("hltv", validators=[InputRequired(),
-        is_hltv], render_kw={"placeholder": "HLTV"})
+        is_hltv], render_kw={"placeholder" : "HLTV"})
 
 @app.route("/csgo", methods=["GET", "POST"])
 def csgo():
@@ -58,6 +58,24 @@ def csgo():
             "{}/pmtc_csgo.py".format(directory), url]).decode("ascii")
         return render_template("csgo.html", form=form, result=result)
     return render_template("csgo.html", form=form)
+
+def is_overgg(form, field):
+    if (not "https://www.over.gg/" in field.data and len(field.data) < 20):
+        raise ValidationError("Must be a valid Over.gg URL!")
+
+class OverwatchForm(FlaskForm):
+    overgg = StringField("overgg", validators=[InputRequired(),
+        is_overgg], render_kw={"placeholder" : "Over.gg"})
+
+@app.route("/overwatch", methods=["GET", "POST"])
+def overwatch():
+    form = OverwatchForm()
+    if form.validate_on_submit():
+        url = form.overgg.data
+        result = subprocess.check_output([sys.executable,
+            "{}/pmtc_overwatch.py".format(directory), url]).decode("ascii")
+        return render_template("overwatch.html", form=form, result=result)
+    return render_template("overwatch.html", form=form)
 
 @app.route("/about")
 def about():
