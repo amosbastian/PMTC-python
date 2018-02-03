@@ -123,6 +123,5 @@ if __name__ == '__main__':
     maps = soup.find_all("div", {"class" : "game-switch-map-name"})
     maps = [" ".join(map_.text.split()) for map_ in maps]
     matches = soup.find_all("div", {"class" : "game-wrapper"})
-    print(len(matches))
     matches = [Match(i, match, maps[i]) for i, match in enumerate(matches)]
     create_post(matches)
