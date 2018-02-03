@@ -38,6 +38,7 @@ class Match(object):
     @property
     def game(self):
         """All information about the game"""
+        #print(self.match.find_all("div", {"class" : "game-stats-team"}))
         return self.match.find_all("div", {"class" : "game-stats-team"})
 
     def players(self, team_id):
@@ -48,6 +49,8 @@ class Match(object):
 
     def team_name(self, team_id):
         """Returns the name of the team with the given team_id"""
+        if self.game == []:
+            return ""
         team = self.game[team_id]
         name = team.find("div", {"class" : "game-stats-team-name"})
         name = name.text.split()
@@ -60,10 +63,14 @@ class Match(object):
 
     @property
     def game_type(self):
+        if self.game == []:
+            return ""
         g_ = self.game[0].find_all("span", {"class" : "game-stats-team-label"})
         return [game.text[:-2] for game in g_]
 
     def game_score(self, team_id):
+        if self.game == []:
+            return ""
         g_ = self.game[team_id].find_all("span", 
             {"class" : "game-stats-team-value"})
         return [game.text.strip() for game in g_]
@@ -83,6 +90,10 @@ class Match(object):
 
 
 def print_match(match, total):
+    if match.game == []:
+        print("\n---")
+        return
+    
     if not match.id == 0:
         print("\n")
     print("---\n\n###MAP {}/{}: {}".format(match.id + 1, total, match.map))
@@ -112,6 +123,6 @@ if __name__ == '__main__':
     maps = soup.find_all("div", {"class" : "game-switch-map-name"})
     maps = [" ".join(map_.text.split()) for map_ in maps]
     matches = soup.find_all("div", {"class" : "game-wrapper"})
-
+    print(len(matches))
     matches = [Match(i, match, maps[i]) for i, match in enumerate(matches)]
     create_post(matches)
