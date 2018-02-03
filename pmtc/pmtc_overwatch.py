@@ -113,8 +113,9 @@ def print_match(match, total):
         print("\n---")
 
 def create_post(matches):
-    for match in matches:
-        print_match(match, len(matches))
+    total = sum([1 for match in matches if not match.game == []])
+    for match in range(total):
+        print_match(matches[match], total)
 
 if __name__ == '__main__':
     url = str(sys.argv[1])
