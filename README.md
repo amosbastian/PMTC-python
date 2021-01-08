@@ -8,7 +8,7 @@ Installation
 To install this program simply clone the repository
 
 ```bash
-git clone https://github.com/amosbastian/PMTC.git
+git clone https://github.com/amosbastian/PMTC-python.git
 ```
 Usage
 --------------------
@@ -17,7 +17,7 @@ Once cloned you can simply run the program you want to use with with Python (wor
 #### League of Legends
 
 ```
-cd PMTC/pmtc
+cd PMTC-python/pmtc
 python pmtc_lol.py "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT06/550247?gameHash=e8da58c50577df24&tab=overview"
 ```
 
